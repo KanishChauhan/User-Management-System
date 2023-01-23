@@ -24,25 +24,9 @@ app.set('view engine', 'hbs')
 
 app.use('/',router)
 
-const con=mysql.createConnection({
-    host:process.env.db_host,
-    database:process.env.db_name,
-    user:process.env.db_username,
-    password:process.env.db_password,
-})
-
-
-con.connect((err)=>{
-    if(err){
-        console.log('error connecting' + e)
-    }
-    else{
-        console.log('connection established')
-    }
-})
-
-
 
 app.listen(port, ()=>{
     console.log(`listening on port ${port}`)
 })
+
+
