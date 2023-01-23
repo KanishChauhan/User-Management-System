@@ -9,7 +9,7 @@ connectionLimit: 100,
 database:'user_management_system',
 host:'localhost',
 user:"root",
-password:'Kanish2225!'
+password:''
 });
 
 
