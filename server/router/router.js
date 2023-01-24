@@ -11,6 +11,8 @@ router.post('/adduser',user.create)
 router.get('/edituser/:id',user.edit)
 router.post('/edituser/:id',user.change)
 router.get('/:id',user.delete)
+router.get('/view/:id',user.viewuser)
+
 
 
 

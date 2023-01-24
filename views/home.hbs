@@ -4,7 +4,13 @@
     <a href="/adduser" type="button" class="btn btn-primary align-self-center">+ add user</a>
   </div>
 </div>
-
+{{#if removeduser }}
+<div class="alert alert-success alert-dismissible fade show" role="alert">
+  {{removeduser}}
+  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
+  </button>
+</div>
+   {{/if}}
 <table class="table table-bordered">
   <thead class="thead-dark">
 
@@ -29,7 +35,7 @@
       <td>{{this.email}}</td>
       <td>{{this.phone}}</td>
       <td class="text-end">
-        <a href="#" type="button" class="btn btn-light btn-small"><i class="bi bi-eye"></i> view</a>       
+        <a href="view/{{this.id}}" type="button" class="btn btn-light btn-small"><i class="bi bi-eye"></i> view</a>       
         <a href="edituser/{{this.id}}" type="button" class="btn btn-light btn-small"><i class="bi bi-pencil"></i> edit</a>       
         <a href="/{{this.id}}" method='POST' type="button" id='dl'class="btn btn-light btn-small"><i class="bi bi-person-x"></i> delete</a>      
          

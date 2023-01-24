@@ -24,9 +24,9 @@ module.exports.view=(req,res)=>{
         con.query(`SELECT * FROM USER WHERE status ='ACTIVE'`,(err,rows)=>{
 
             if(!err){
-                let removedusers = req.query.removed
+                let removeduser = req.query.removed
                 console.log('DATABASE CONNECTED')
-                res.render('home',{rows})
+                res.render('home',{rows,removeduser})
                 
             }
             else{
@@ -176,12 +176,32 @@ module.exports.delete=(req, res) =>{
 
             if(!err){
                 // let removedusers = req.query.removed
-                console.log('DATABASE CONNECTED')
-                res.redirect('/')            
+                // console.log('DATABASE CONNECTED')
+                let r=encodeURIComponent('USER SUCCESSFULLY REMOVED')
+
+                res.redirect('/?removed='+r)            
             }
             else{
                 console.log(err+'error occured')
             }
         })
 
+}
+
+module.exports.viewuser=(req,res)=>{
+
+       
+    con.query(`SELECT * FROM USER WHERE id=${req.params.id}`,(err,rows)=>{
+
+        if(!err){
+            let removedusers = req.query.removed
+            console.log('DATABASE CONNECTED')
+            res.render('view',{rows})
+            
+        }
+        else{
+            console.log(err+'error occured')
+        }
+    })
+  
 }
