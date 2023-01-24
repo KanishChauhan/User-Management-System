@@ -6,10 +6,12 @@ require('dotenv').config()
 const con=mysql.createConnection({
 
 connectionLimit: 100,
+
 database:process.env.db_name,
 host:process.env.db_host,
 user:process.env.db_username,
 password:process.env.db_password
+
 });
 
 
