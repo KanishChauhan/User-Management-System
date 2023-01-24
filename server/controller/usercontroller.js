@@ -21,7 +21,7 @@ password:process.env.db_password
 module.exports.view=(req,res)=>{
 
        
-        con.query('SELECT * FROM USER',(err,rows)=>{
+        con.query(`SELECT * FROM USER WHERE status ='ACTIVE'`,(err,rows)=>{
 
             if(!err){
                 let removedusers = req.query.removed
@@ -155,4 +155,33 @@ module.exports.change=(req,res)=>{
     })
 }
 
-//
+//DELETE 
+module.exports.delete=(req, res) =>{
+    // res.render('delete')
+
+    //THIS IS TO ACTUALL DELETE THE RECORD
+    // con.query(`DELETE FROM USER WHERE id=${req.params.id}`,(err,rows)=>{
+
+    //     if(!err){
+    //         // let removedusers = req.query.removed
+    //         console.log('DATABASE CONNECTED')
+    //         res.redirect('/')            
+    //     }
+    //     else{
+    //         console.log(err+'error occured')
+    //     }
+    // })
+
+    con.query(`UPDATE USER SET status='removed' WHERE id=${req.params.id}`,(err,rows)=>{
+
+            if(!err){
+                // let removedusers = req.query.removed
+                console.log('DATABASE CONNECTED')
+                res.redirect('/')            
+            }
+            else{
+                console.log(err+'error occured')
+            }
+        })
+
+}
