@@ -112,9 +112,47 @@ module.exports.create=(req,res)=>{
 
 
 module.exports.edit=(req,res)=>{
-    res.render('edituser')
 
-    
+    con.query(`SELECT * FROM USER WHERE id=${req.params.id}`,(err,rows)=>{
+
+        if(!err){
+            // let removedusers = req.query.removed
+            console.log('DATABASE CONNECTED')
+            res.render('edituser',{rows})
+            
+        }
+        else{
+            console.log(err+'error occured')
+        }
+    })
+
+}
+
+module.exports.change=(req,res)=>{
+    const {first_name,last_name,email,phone,comments}=req.body
+    // let id=req.body.id
+    // console.log(req.paramsid)
+    let qry=`UPDATE USER SET first_name ='${first_name}',last_name ='${last_name}',email='${email}',phone='${phone}',comments='${comments}' WHERE id=${req.params.id}`
+    con.query(qry,(err,rows)=>{
+        if(!err){
+
+               con.query(`SELECT * FROM USER WHERE id=${req.params.id}`,(err,rows)=>{
+
+        if(!err){
+            // let removedusers = req.query.removed
+            console.log('DATABASE CONNECTED')
+            res.render('edituser',{rows,alert:'CHANGES SAVED'})
+            
+        }
+        else{
+            console.log(err+'error occured')
+        }
+    })
+        }
+        else{
+            console.log('error ocurred' +err)
+        }
+    })
 }
 
 //
